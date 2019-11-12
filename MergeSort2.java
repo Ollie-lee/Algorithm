@@ -2,9 +2,10 @@ package com.imooc.leo;
 
 public class MergeSort2 {
 	public void mergeSort2(int[] arr) {
-		//Íâ²ãÑ­»·¿ØÖÆÃ¿´ÎszÄÚµÄÔªËØ¸öÊı
-		for(int sz = 1; sz<= arr.length; sz += sz) {
-			//ÄÚ²ãÑ­»·¿ØÖÆmergeµÄÇøÓò
+		//å¤–å±‚å¾ªç¯æ§åˆ¶æ¯æ¬¡szå†…çš„å…ƒç´ ä¸ªæ•°
+		//szæ˜¯mergeè¿™ä¸ªå½’å¹¶è¿‡ç¨‹ä¸­å¾…å½’å¹¶çš„ä¸¤ä¸ªæ•°ç»„çš„å¤§å°
+		for(int sz = 1; sz< arr.length; sz += sz) {
+			//å†…å±‚å¾ªç¯æ§åˆ¶mergeçš„åŒºåŸŸ
 			for(int i = 0; i + sz<arr.length; i += sz + sz) {
 				merge(arr, i, i + sz - 1, min(i + sz + sz - 1, arr.length - 1));
 				
@@ -13,18 +14,18 @@ public class MergeSort2 {
 	}
 	
 	private void merge(int[] arr, int l, int mid, int r) {
-		//´´½¨Ò»¸öauxiliary¸¨ÖúÊı×é, ¸´ÖÆÔ­Êı×éµÄÖµ,
-		//ÔÚauxiliary¸¨ÖúÊı×éÄÚ½øĞĞiÓëjµÄ±È½Ï,
-		//°Ñ½ÏĞ¡Öµ·µ»Ø¸øarr[]Êı×é
+		//åˆ›å»ºä¸€ä¸ªauxiliaryè¾…åŠ©æ•°ç»„, å¤åˆ¶åŸæ•°ç»„çš„å€¼,
+		//åœ¨auxiliaryè¾…åŠ©æ•°ç»„å†…è¿›è¡Œiä¸jçš„æ¯”è¾ƒ,
+		//æŠŠè¾ƒå°å€¼è¿”å›ç»™arr[]æ•°ç»„
 		int[] aux = new int[r - l + 1];
 		for(int i = l ; i<= r; i++) {
 			aux[i - l] = arr[i];
 		}
-		//iÊÇ×ó±ß×ÓÊı×é±È½ÏµÄÔªËØ
-		//jÊÇÓÒ±ß×ÓÊı×é±È½ÏµÄÔªËØ
+		//iæ˜¯å·¦è¾¹å­æ•°ç»„æ¯”è¾ƒçš„å…ƒç´ 
+		//jæ˜¯å³è¾¹å­æ•°ç»„æ¯”è¾ƒçš„å…ƒç´ 
 		int i = l;
 		int j = mid + 1;
-		//kÊÇÏòarr[]Êı×é¸´ÖÆµÄµÄÎ»ÖÃ
+		//kæ˜¯å‘arr[]æ•°ç»„å¤åˆ¶çš„çš„ä½ç½®
 		for(int k = l; k<= r; k++) {
 			if(i > mid) {
 				arr[k] = aux[j - l];
@@ -39,7 +40,7 @@ public class MergeSort2 {
 				i++;
 			}
 			else{
-				//´Ë´¦Í¬Ê±´¦ÀíÁËaux[i] = aux[j]ÏàµÈÊ±µÄÇé¿ö
+				//æ­¤å¤„åŒæ—¶å¤„ç†äº†aux[i] = aux[j]ç›¸ç­‰æ—¶çš„æƒ…å†µ
 				arr[k] = aux[j - l];
 				j++;
 			}
