@@ -5,7 +5,7 @@ public class QuickSort {
 		quickSort(arr, 0, arr.length - 1);
 	}
 	
-	//å¯¹arræ•°ç»„çš„[l,r]è¿›è¡Œå¿«é€Ÿæ’åº,é€’å½’ç®—æ³•
+	//¶ÔarrÊı×éµÄ[l,r]½øĞĞ¿ìËÙÅÅĞò,µİ¹éËã·¨
 	private void quickSort(int[] arr, int l, int r) {
 		if(l >= r)
 			return;
@@ -14,22 +14,23 @@ public class QuickSort {
 		quickSort(arr, p + 1, r);
 	}
 	
-	//å¯¹arræ•°ç»„çš„[l,r]éƒ¨åˆ†è¿›è¡Œpartitionæ“ä½œ
-	//è¿”å›p,ä½¿å¾—arr[l,p-1]<arr[p],arr[p+1,r]>arr[p]
+	//¶ÔarrÊı×éµÄ[l,r]²¿·Ö½øĞĞpartition²Ù×÷
+	//·µ»Øp,Ê¹µÃarr[l,p-1]<arr[p],arr[p+1,r]>arr[p]
 	private int partition(int[] arr, int l, int r) {
 		//Math.random() = [0,1)
 		//Math.random()*(r-l) = [0,r-1);
-		//Math.random()*(r-l) + 1 = [0,r-1];
-		//Math.random()*(r-l+1) + l) = [l,r];
+		//Math.random()*(r-l) + 1 = [1,r-1];
+		//Math.random()*(r-l+1) + l) = [l+1,r];
 		//int v = arr[(int)(Math.random()*(r-l+1)) + l];
-		//å½“é‡‡ç”¨æ³¨é‡Šå†…çš„æ–¹æ³•æ—¶,ä¸ä¸‹é¢çš„é€»è¾‘ä¸åŒ¹é…,æ¯”å¦‚ä»l+1å¤„å¼€å§‹éå†è¿™ç±»æ“ä½œ
-		//éšæœºåŒ–å³å°†arr[l]çš„å€¼ä¸æ•°ç»„éšæœºä½ç½®çš„å…ƒç´ çš„å€¼äº¤æ¢ä½ç½®
+		//µ±²ÉÓÃ×¢ÊÍÄÚµÄ·½·¨Ê±,ÓëÏÂÃæµÄÂß¼­²»Æ¥Åä,±ÈÈç´Ól+1´¦¿ªÊ¼±éÀúÕâÀà²Ù×÷
+		//Ëæ»ú»¯¼´½«arr[l]µÄÖµÓëÊı×éËæ»úÎ»ÖÃµÄÔªËØµÄÖµ½»»»Î»ÖÃ
 		swap(arr,l, (int)(Math.random()*(r-l+1)) + l);
 		int v = arr[l];
+		
 		//arr[l + 1, j] < v; arr[j + 1, i - 1] < v
-		int j = l;//åˆå§‹åŒ–çš„å€¼éå¸¸å…³é”®,ä¿è¯äº†ä¸Šé¢ä¸¤ä¸ªæ•°ç»„ä¸ºç©º
+		int j = l;//³õÊ¼»¯µÄÖµ·Ç³£¹Ø¼ü,±£Ö¤ÁËÉÏÃæÁ½¸öÊı×éÎª¿Õ
 		for(int i = l + 1; i <= r; i++) {
-			//å¦‚æœarr[i]<v, å°±å°†å…¶ä¸arr[j+1]äº¤æ¢,j++, å¦åˆ™å°±ç›´æ¥i++,ä¸ç”¨åšæ“ä½œ
+			//Èç¹ûarr[i]<v, ¾Í½«ÆäÓëarr[j+1]½»»»,j++, ·ñÔò¾ÍÖ±½Ói++,²»ÓÃ×ö²Ù×÷
 			if(arr[i] < v)
 			{
 				/*int temp = arr[i];
@@ -39,11 +40,13 @@ public class QuickSort {
 				j++;
 			}
 		}
-		
-		swap(arr,l,j);
-		//ä¸‹è¾¹ä¸ºé”™è¯¯ç¤ºèŒƒ,æ­¤å¤„åªè°ƒæ¢äº†ç´¢å¼•,è¿˜è¦å†è°ƒæ¢ç´¢å¼•å¯¹åº”çš„å€¼
-		swap(l,j);
 		/*int temp = arr[l];
+		arr[l] = arr[j];
+		arr[j] = temp;*/
+		swap(arr,l,j);
+		//ÏÂ±ßÎª´íÎóÊ¾·¶,´Ë´¦Ö»µ÷»»ÁËË÷Òı,»¹ÒªÔÙµ÷»»Ë÷Òı¶ÔÓ¦µÄÖµ
+		/*swap(l,j);
+		int temp = arr[l];
 		arr[l] = arr[j];
 		arr[j] = temp;*/
 		
